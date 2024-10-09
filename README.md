@@ -11,8 +11,6 @@ y_t^{\text{Double DQN}} = r_t + \gamma \cdot Q_{\theta'}(s_{t+1}, \arg\max_{a'} 
 
 where:
 
-### Symbol Definitions:
-
 - **y<sub>t</sub><sup>Double DQN</sup>**: Target Q-value for time step **t** in Double DQN.
 - **r<sub>t</sub>**: Reward received after taking action at time step **t**.
 - **γ**: Discount factor that determines the importance of future rewards (usually between 0 and 1).
