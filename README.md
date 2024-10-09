@@ -20,7 +20,7 @@ where:
 - **arg max<sub>a'</sub> Q<sub>θ</sub>(s<sub>t+1</sub>, a')**: Action that maximizes the Q-value in the online network for the next state **s<sub>t+1</sub>**.
 
 
-## Duleing DQN
+### Duleing DQN
 
 Dueling DQN is an extension of the DQN architecture designed to enhance learning efficiency by separating the estimation of the state-value and the action-value. In standard DQN, the Q-value is estimated directly for each action, which may not be efficient for states where choosing an action does not significantly affect the outcome. Dueling DQN introduces two streams within the network: one for estimating the **state-value** (how good it is to be in a given state) and another for estimating the **advantage** of each action (how much better it is to take a specific action over others in the same state).
 
@@ -57,4 +57,26 @@ Q(s, a; \theta, \epsilon) = Q(s, a; \theta + \sigma \odot \epsilon)
 <b> Note: </b>
 
 **Noisy Layers**: These replace the standard layers and introduce learnable noise into the weights, encouraging the agent to explore different actions based on the noise added during training.
+
+
+### Prioritized Experience Replay (PER)
+
+Prioritized Experience Replay is an extension of the standard Experience Replay technique used in DQN, which improves learning efficiency by replaying more important experiences more frequently. In standard experience replay, transitions (state, action, reward, next state) are uniformly sampled from the replay buffer. However, in PER, transitions are sampled based on their **priority**, which is usually determined by the **temporal difference (TD) error**. Experiences with higher TD errors are considered more important because they represent unexpected or poorly understood transitions.
+
+### Key Ideas:
+
+1. **Priority Sampling**: Instead of sampling experiences uniformly, transitions with larger TD errors (i.e., those where the agent was surprised by the outcome) are sampled more often. The probability of sampling a transition \( i \) is proportional to its priority \( p_i \):
+   
+   ```math
+   P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}
+   ```
+
+   <div> <ul> <li><strong>P(i)</strong>: The probability of sampling transition <strong>i</strong>, proportional to its priority.</li> <li><strong>p<sub>i</sub></strong>: The priority of transition <strong>i</strong>, typically based on the TD error \( |\delta_i| \).</li> <li><strong>α</strong>: A hyperparameter controlling the level of prioritization (α = 0 corresponds to uniform sampling).</li> <li><strong>w<sub>i</sub></strong>: The importance sampling weight for transition <strong>i</strong> to correct for bias.</li> <li><strong>N</strong>: The total number of transitions stored in the replay buffer.</li> <li><strong>β</strong>: A hyperparameter controlling the strength of the importance sampling correction. Typically annealed towards 1.</li> <li><strong>TD Error \( |\delta_i| \)</strong>: The temporal difference error for transition <strong>i</strong>, indicating how surprising or incorrect the Q-value estimate was for that transition.</li> </ul> </div>
+
+   ### Notes:
+
+1. **Prioritized Sampling**: PER samples transitions with higher TD errors more frequently, allowing the agent to focus on learning from more important experiences.
+2. **Importance Sampling (IS)**: To correct the bias introduced by prioritized sampling, IS weights are applied when updating the network, ensuring that the updates remain unbiased.
+3. **Efficiency Considerations**: Using data structures like a **Sum Tree** ensures efficient computation and updating of priorities, which is important when scaling up the buffer size.
+
 
