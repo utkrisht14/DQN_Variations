@@ -38,7 +38,21 @@ where:
 3. **A(s, a)**: The advantage function which represents how much better or worse action **a** is compared to the average action in state **s**.
 4. **|𝒜|**: The number of possible actions in the action space.
 
-The equation and symbols are written in LaTeX using the `$$` format for equations and should display correctly on GitHub as long as the platform supports LaTeX-style syntax. If GitHub doesn't render it, the equation might not appear correctly, but it is formatted as per the standard LaTeX syntax.
 
-Let me know if you need further modifications!
+## Noisy DQN (
+
+Noisy DQN is an enhancement of the DQN architecture that introduces stochastic exploration by adding noise directly into the neural network’s weights. This helps the agent explore more effectively without relying on traditional exploration strategies like ϵ-greedy. The amount of noise is learnable and can be adjusted during training, allowing the agent to balance exploration and exploitation more effectively.
+
+The Q-value in Noisy DQN is computed as:
+
+```latex
+Q(s, a; \theta, \epsilon) = Q(s, a; \theta + \sigma \odot \epsilon)
+```
+
+<div> <ul> <li><strong>Q(s, a; θ, ϵ)</strong>: The Q-value estimated by the network for state <strong>s</strong> and action <strong>a</strong>, with parameters <strong>θ</strong> and noise <strong>ϵ</strong>.</li> <li><strong>θ</strong>: The learnable parameters (weights) of the neural network.</li> <li><strong>σ</strong>: The standard deviation of the noise applied to the network's weights.</li> <li><strong>ϵ</strong>: The noise term, sampled from a Gaussian distribution (typically zero-mean with some variance).</li> <li><strong>⊙</strong>: Element-wise multiplication, applied between <strong>σ</strong> and <strong>ϵ</strong> to perturb the weights.</li> </ul> </div>
+
+#### Key Points:
+
+1. **Noisy Layers**: These replace the standard layers and introduce learnable noise into the weights, encouraging the agent to explore different actions based on the noise added during training.
+2. **No Importance Sampling**: Since Noisy DQN does not rely on prioritized sampling for learning, it doesn't need importance sampling to adjust for biased updates.
 
