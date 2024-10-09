@@ -7,16 +7,18 @@ The update rule for Double DQN is modified to decouple action selection and eval
 
 ```math
 y_t^{\text{Double DQN}} = r_t + \gamma \cdot Q_{\theta'}(s_{t+1}, \arg\max_{a'} Q_{\theta}(s_{t+1}, a'))
-
+```
 
 where:
 
-- \( y_t^{\text{Double DQN}} \): Target Q-value for time step \( t \) in Double DQN.
-- \( r_t \): Reward received after taking action at time step \( t \).
-- \( \gamma \): Discount factor that determines the importance of future rewards (usually between 0 and 1).
-- \( s_{t+1} \): The next state at time step \( t + 1 \).
-- \( Q_{\theta'} \): Q-value function estimated by the target network with parameters \( \theta' \).
-- \( Q_{\theta} \): Q-value function estimated by the online network with parameters \( \theta \).
-- \( \arg\max_{a'} Q_{\theta}(s_{t+1}, a') \): Action that maximizes the Q-value in the online network for the next state \( s_{t+1} \).
-```
+### Symbol Definitions:
+
+- **y<sub>t</sub><sup>Double DQN</sup>**: Target Q-value for time step **t** in Double DQN.
+- **r<sub>t</sub>**: Reward received after taking action at time step **t**.
+- **γ**: Discount factor that determines the importance of future rewards (usually between 0 and 1).
+- **s<sub>t+1</sub>**: The next state at time step **t + 1**.
+- **Q<sub>θ'</sub>**: Q-value function estimated by the target network with parameters **θ'**.
+- **Q<sub>θ</sub>**: Q-value function estimated by the online network with parameters **θ**.
+- **arg max<sub>a'</sub> Q<sub>θ</sub>(s<sub>t+1</sub>, a')**: Action that maximizes the Q-value in the online network for the next state **s<sub>t+1</sub>**.
+
 
