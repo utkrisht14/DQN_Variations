@@ -65,7 +65,7 @@ Prioritized Experience Replay is an extension of the standard Experience Replay 
 
 
 
- **Priority Sampling**: Instead of sampling experiences uniformly, transitions with larger TD errors (i.e., those where the agent was surprised by the outcome) are sampled more often. The probability of sampling a transition \( i \) is proportional to its priority \( p_i \):
+ **Priority Sampling**: Instead of sampling experiences uniformly, transitions with larger TD errors (i.e., those where the agent was surprised by the outcome) are sampled more often. The probability of sampling a transition <i>i</i> is proportional to its priority p<sub>i</i> :
    
    ```math
    P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}
