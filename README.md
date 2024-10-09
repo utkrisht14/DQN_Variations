@@ -20,6 +20,7 @@ where:
 - **arg max<sub>a'</sub> Q<sub>θ</sub>(s<sub>t+1</sub>, a')**: Action that maximizes the Q-value in the online network for the next state **s<sub>t+1</sub>**.
 
 <hr/>
+
 ### Duleing DQN
 
 Dueling DQN is an extension of the DQN architecture designed to enhance learning efficiency by separating the estimation of the state-value and the action-value. In standard DQN, the Q-value is estimated directly for each action, which may not be efficient for states where choosing an action does not significantly affect the outcome. Dueling DQN introduces two streams within the network: one for estimating the **state-value** (how good it is to be in a given state) and another for estimating the **advantage** of each action (how much better it is to take a specific action over others in the same state).
@@ -39,6 +40,7 @@ where:
 4. **|𝒜|**: The number of possible actions in the action space.
 
 <hr/>
+
 ### Noisy DQN 
 
 Noisy DQN is an enhancement of the DQN architecture that introduces stochastic exploration by adding noise directly into the neural network’s weights. This helps the agent explore more effectively without relying on traditional exploration strategies like ϵ-greedy. The amount of noise is learnable and can be adjusted during training, allowing the agent to balance exploration and exploitation more effectively.
@@ -56,6 +58,7 @@ Q(s, a; \theta, \epsilon) = Q(s, a; \theta + \sigma \odot \epsilon)
 **Noisy Layers**: These replace the standard layers and introduce learnable noise into the weights, encouraging the agent to explore different actions based on the noise added during training.
 
 <hr/>
+
 ### Prioritized Experience Replay (PER)
 
 Prioritized Experience Replay is an extension of the standard Experience Replay technique used in DQN, which improves learning efficiency by replaying more important experiences more frequently. In standard experience replay, transitions (state, action, reward, next state) are uniformly sampled from the replay buffer. However, in PER, transitions are sampled based on their **priority**, which is usually determined by the **temporal difference (TD) error**. Experiences with higher TD errors are considered more important because they represent unexpected or poorly understood transitions.
