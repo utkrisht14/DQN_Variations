@@ -21,7 +21,7 @@ where:
 
 <hr/>
 
-### Duleing DQN
+### Dueling DQN
 
 Dueling DQN is an extension of the DQN architecture designed to enhance learning efficiency by separating the estimation of the state-value and the action-value. In standard DQN, the Q-value is estimated directly for each action, which may not be efficient for states where choosing an action does not significantly affect the outcome. Dueling DQN introduces two streams within the network: one for estimating the **state-value** (how good it is to be in a given state) and another for estimating the **advantage** of each action (how much better it is to take a specific action over others in the same state).
 
