@@ -7,7 +7,7 @@ from collections import deque
 import os
 import matplotlib.pyplot as plt
 
-# Check if GPU is available
+# Set the GPU
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
