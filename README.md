@@ -7,7 +7,7 @@ The update rule for Double DQN is modified to decouple action selection and eval
 
 ```math
 y_t^{\text{Double DQN}} = r_t + \gamma \cdot Q_{\theta'}(s_{t+1}, \arg\max_{a'} Q_{\theta}(s_{t+1}, a'))
-```
+
 
 where:
 
@@ -18,5 +18,5 @@ where:
 - \( Q_{\theta'} \): Q-value function estimated by the target network with parameters \( \theta' \).
 - \( Q_{\theta} \): Q-value function estimated by the online network with parameters \( \theta \).
 - \( \arg\max_{a'} Q_{\theta}(s_{t+1}, a') \): Action that maximizes the Q-value in the online network for the next state \( s_{t+1} \).
-
+```
 
