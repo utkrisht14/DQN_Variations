@@ -10,7 +10,7 @@ from collections import deque
 
 
 
-# Check if the GPU is available
+# Set the GPU
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
@@ -60,7 +60,7 @@ class Agent:
         self.state_size = state_size
         self.action_size = action_size
         self.epsilon = 1.0
-        self.memory = ReplayMemory(100000)
+        self.memory = ReplayMemory(100000) # Set the memory size
 
         # Initialize networks
         self.online_net = DQN(state_size, action_size).to(device)
@@ -71,6 +71,7 @@ class Agent:
         self.loss_fn = nn.MSELoss()
 
     def update_target_network(self):
+        """ Function to update the target network """
         self.target_net.load_state_dict(self.online_net.state_dict())
 
     def select_action(self, state):
@@ -156,8 +157,6 @@ def train_agent():
             if done:
                 break
 
-        # **These operations should be at the episode level, not the time step level**
-
         # Update epsilon
         agent.update_epsilon()
 
@@ -234,7 +233,6 @@ def test_agent():
     env.close()
 
 if __name__ == "__main__":
-    # Create directories
     # Create directories
     os.makedirs('./models', exist_ok=True)
     os.makedirs('./results', exist_ok=True)
