@@ -45,7 +45,7 @@ Noisy DQN is an enhancement of the DQN architecture that introduces stochastic e
 
 The Q-value in Noisy DQN is computed as:
 
-```latex
+```math
 Q(s, a; \theta, \epsilon) = Q(s, a; \theta + \sigma \odot \epsilon)
 ```
 
